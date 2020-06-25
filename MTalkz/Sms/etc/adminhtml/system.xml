@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mtalkz_sms_tab" translate="label" sortOrder="1000">
+            <label>mTalkz</label>
+        </tab>
+        <section id="mtalkz_sms" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Configuration</label>
+            <tab>mtalkz_sms_tab</tab>
+            <resource>MTalkz_Sms::config</resource>
+            <group id="account_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Account Settings</label>
+				<field id="use_api2" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use API 2</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Choose Yes if you wish to send international SMS, otherwise choose No</comment>
+                </field>
+				<field id="apikey" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>User Name</label>
+					<validate>required-entry</validate>
+                </field>
+				<field id="sender" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Password</label>
+					<validate>required-entry validate-data</validate>
+                </field>
+				<field id="admin_phone" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Phone Number</label>
+					<validate>required-entry validate-digits</validate>
+                </field>
+				<field id="dlr_url" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delivery Receipt Callback URL</label>
+					<validate>validate-url</validate>
+					<depends><field id="use_api2">0</field></depends>
+                    <comment>Leave blank if no callback is required</comment>
+                </field>
+                <field id="debug" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Debug</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+			<group id="admin_sms" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>New Order Admin Notification</label>
+				<field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="template" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Template</label>
+					<validate>required-entry validate-no-html-tags</validate>
+					<depends><field id="enable">1</field></depends>
+					<comment>The following variables can be used in your message: {ORDER-NUMBER}, {ORDER-TOTAL}, {ORDER-STATUS}, {CARRIER-NAME}, {PAYMENT-NAME}, {CUSTOMER-FIRST-NAME}, {CUSTOMER-LAST-NAME}, {CUSTOMER-NAME}, and {CUSTOMER-EMAIL}</comment>
+                </field>
+            </group>
+			<group id="new_order" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Order Received (Pending) Customer Notification</label>
+				<field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="template" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Template</label>
+					<validate>required-entry validate-no-html-tags</validate>
+					<depends><field id="enable">1</field></depends>
+					<comment>The following variables can be used in your message: {ORDER-NUMBER}, {ORDER-TOTAL}, {ORDER-STATUS}, {CARRIER-NAME}, {PAYMENT-NAME}, {CUSTOMER-FIRST-NAME}, {CUSTOMER-LAST-NAME}, {CUSTOMER-NAME}, and {CUSTOMER-EMAIL}</comment>
+                </field>
+            </group>
+			<group id="processing_order" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Order Processing Customer Notification</label>
+				<field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="template" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Template</label>
+					<validate>required-entry validate-no-html-tags</validate>
+					<depends><field id="enable">1</field></depends>
+					<comment>The following variables can be used in your message: {ORDER-NUMBER}, {ORDER-TOTAL}, {ORDER-STATUS}, {CARRIER-NAME}, {PAYMENT-NAME}, {CUSTOMER-FIRST-NAME}, {CUSTOMER-LAST-NAME}, {CUSTOMER-NAME}, and {CUSTOMER-EMAIL}</comment>
+                </field>
+            </group>
+			<group id="holded_order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Order On-Hold Customer Notification</label>
+				<field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="template" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Template</label>
+					<validate>required-entry validate-no-html-tags</validate>
+					<depends><field id="enable">1</field></depends>
+					<comment>The following variables can be used in your message: {ORDER-NUMBER}, {ORDER-TOTAL}, {ORDER-STATUS}, {CARRIER-NAME}, {PAYMENT-NAME}, {CUSTOMER-FIRST-NAME}, {CUSTOMER-LAST-NAME}, {CUSTOMER-NAME}, and {CUSTOMER-EMAIL}</comment>
+                </field>
+            </group>
+			<group id="complete_order" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Order Completed Customer Notification</label>
+				<field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="template" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Template</label>
+					<validate>required-entry validate-no-html-tags</validate>
+					<depends><field id="enable">1</field></depends>
+					<comment>The following variables can be used in your message: {ORDER-NUMBER}, {ORDER-TOTAL}, {ORDER-STATUS}, {CARRIER-NAME}, {PAYMENT-NAME}, {CUSTOMER-FIRST-NAME}, {CUSTOMER-LAST-NAME}, {CUSTOMER-NAME}, and {CUSTOMER-EMAIL}</comment>
+                </field>
+            </group>
+			<group id="canceled_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Order Canceled Customer Notification</label>
+				<field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="template" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Template</label>
+					<validate>required-entry validate-no-html-tags</validate>
+					<depends><field id="enable">1</field></depends>
+					<comment>The following variables can be used in your message: {ORDER-NUMBER}, {ORDER-TOTAL}, {ORDER-STATUS}, {CARRIER-NAME}, {PAYMENT-NAME}, {CUSTOMER-FIRST-NAME}, {CUSTOMER-LAST-NAME}, {CUSTOMER-NAME}, and {CUSTOMER-EMAIL}</comment>
+                </field>
+            </group>
+			<group id="closed_order" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Order Closed Customer Notification</label>
+				<field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="template" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Template</label>
+					<validate>required-entry validate-no-html-tags</validate>
+					<depends><field id="enable">1</field></depends>
+					<comment>The following variables can be used in your message: {ORDER-NUMBER}, {ORDER-TOTAL}, {ORDER-STATUS}, {CARRIER-NAME}, {PAYMENT-NAME}, {CUSTOMER-FIRST-NAME}, {CUSTOMER-LAST-NAME}, {CUSTOMER-NAME}, and {CUSTOMER-EMAIL}</comment>
+                </field>
+            </group>
+			<group id="custom_status" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Order Custom Status Customer Notification</label>
+				<field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="template" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Template</label>
+					<validate>required-entry validate-no-html-tags</validate>
+					<depends><field id="enable">1</field></depends>
+					<comment>The following variables can be used in your message: {ORDER-NUMBER}, {ORDER-TOTAL}, {ORDER-STATUS}, {CARRIER-NAME}, {PAYMENT-NAME}, {CUSTOMER-FIRST-NAME}, {CUSTOMER-LAST-NAME}, {CUSTOMER-NAME}, and {CUSTOMER-EMAIL}</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
